@@ -2,22 +2,32 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main style={{ maxWidth: 980, margin: "40px auto", padding: 24 }}>
-      <h1 style={{ fontSize: 28, marginBottom: 12 }}>Bienvenido a LUX LANE</h1>
-      <p style={{ marginBottom: 24 }}>
-        Demo del sitio actualizado. Usa el menú o estos accesos rápidos:
+    <main className="container">
+      <p className="muted">Demo del sitio</p>
+      <h1 className="h1">Bienvenido a <strong>LUX LANE</strong></h1>
+      <p className="muted" style={{marginBottom: 18}}>
+        Transporte premium con tracking en tiempo real. Comienza aquí:
       </p>
-      <ul style={{ lineHeight: 1.9 }}>
-        <li>
-          <Link href="/book">Reservar</Link>
-        </li>
-        <li>
-          <Link href="/track/demo-trip">Rastrear mi viaje (demo)</Link>
-        </li>
-        <li>
-          <Link href="/dashboard">Dashboard</Link>
-        </li>
-      </ul>
+
+      <div className="card" style={{display:"grid", gap:16}}>
+        <div>
+          <h2 className="h2">Reservar</h2>
+          <p className="muted" style={{margin:"6px 0 10px"}}>Agenda tu viaje en minutos.</p>
+          <Link href="/book">Ir a Reservar →</Link>
+        </div>
+
+        <div>
+          <h2 className="h2">Rastrear mi viaje (demo)</h2>
+          <p className="muted" style={{margin:"6px 0 10px"}}>Visualiza el estado de un viaje de ejemplo.</p>
+          <Link href="/track/demo-trip">Abrir mapa de tracking →</Link>
+        </div>
+
+        <div>
+          <h2 className="h2">Dashboard</h2>
+          <p className="muted" style={{margin:"6px 0 10px"}}>Panel para ver reservas y conductores.</p>
+          <Link href="/dashboard">Ir al Dashboard →</Link>
+        </div>
+      </div>
     </main>
   );
 }
