@@ -1,3 +1,66 @@
-html,body{margin:0;padding:0}
-a{color:inherit;text-decoration:none}
-*{box-sizing:border-box}
+/* app/globals.css */
+
+/* 1) Reset suave + tipografía base */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { font-size: 16px; }
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: #0f172a;            /* slate-900 */
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+/* 2) Paleta mínima de marca */
+:root{
+  --brand: #111827;          /* gris muy oscuro para header */
+  --brand-2: #0ea5e9;        /* celeste para acentos */
+  --text-muted: #475569;     /* slate-600 */
+  --border: #e2e8f0;         /* slate-200 */
+}
+
+/* 3) Contenedor responsivo */
+.container{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+/* 4) Header (barra superior) */
+.header{
+  position: sticky; top: 0; z-index: 10;
+  background: var(--brand);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.header-inner{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.brand{
+  color: #fff; font-weight: 700; letter-spacing: .5px;
+}
+.nav{
+  display: flex; gap: 14px; margin-left: auto;
+}
+.nav a{
+  color: rgba(255,255,255,.85);
+  text-decoration: none; font-weight: 500;
+}
+.nav a:hover{ color: #fff; }
+
+/* 5) Tarjetas/section estética simple */
+.card{
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  background: #fff;
+}
+
+.muted{ color: var(--text-muted); }
+.h1{ font-size: clamp(28px, 3.6vw, 36px); font-weight: 800; margin: 8px 0 8px; }
+.h2{ font-size: clamp(20px, 2.6vw, 24px); font-weight: 700; margin: 0 0 6px; }
