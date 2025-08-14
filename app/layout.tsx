@@ -1,25 +1,27 @@
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+import './globals.css';
+import Link from 'next/link';
+import type { ReactNode } from 'react';
+
+export const metadata = {
+  title: 'LUX LANE — Transporte premium con tracking',
+  description: 'Viajes con chofer verificado, seguimiento en vivo y soporte 24/7.',
+};
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="es">
       <body>
-        <header className="nav">
-          <div className="container nav-inner">
-            <div className="brand">
-              <a href="/">
-                <span className="logo" />
-                LUX LANE
-              </a>
-            </div>
-            <nav className="menu">
-              <a href="/book">Reservar</a>
-              <a href="/track/demo-trip">Rastrear mi viaje</a>
-              <a href="/dashboard">Dashboard</a>
+        <header className="topbar">
+          <div className="wrap">
+            <div className="brand">LUX LANE</div>
+            <nav className="nav">
+              <Link href="/book">Reservar</Link>
+              <Link href="/track/demo-trip">Rastrear mi viaje</Link>
+              <Link href="/dashboard">Dashboard</Link>
             </nav>
           </div>
         </header>
-        <main className="container">
-          {children}
-        </main>
+        <main className="container">{children}</main>
       </body>
     </html>
   );
