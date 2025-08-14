@@ -1,33 +1,38 @@
 import Link from "next/link";
 
-export default function Home() {
+export default function Home(){
   return (
-    <main className="container">
-      <p className="muted">Demo del sitio</p>
-      <h1 className="h1">Bienvenido a <strong>LUX LANE</strong></h1>
-      <p className="muted" style={{marginBottom: 18}}>
-        Transporte premium con tracking en tiempo real. Comienza aquí:
-      </p>
-
-      <div className="card" style={{display:"grid", gap:16}}>
-        <div>
-          <h2 className="h2">Reservar</h2>
-          <p className="muted" style={{margin:"6px 0 10px"}}>Agenda tu viaje en minutos.</p>
-          <Link href="/book">Ir a Reservar →</Link>
+    <>
+      <section className="hero">
+        <span className="badge">
+          <span className="logo" /> Transporte premium con tracking en tiempo real
+        </span>
+        <h1 className="h1">LUX LANE</h1>
+        <p className="muted" style={{marginBottom:18}}>
+          Viaja seguro, a tiempo y con estilo. Reserva en minutos, sigue tu chofer en el mapa y recibe confirmación.
+        </p>
+        <div style={{display:"flex",gap:12}}>
+          <Link className="btn" href="/book">Reservar →</Link>
+          <Link className="btn" href="/track/demo-trip">Ver tracking demo →</Link>
         </div>
+      </section>
 
-        <div>
-          <h2 className="h2">Rastrear mi viaje (demo)</h2>
-          <p className="muted" style={{margin:"6px 0 10px"}}>Visualiza el estado de un viaje de ejemplo.</p>
-          <Link href="/track/demo-trip">Abrir mapa de tracking →</Link>
+      <section className="section">
+        <div className="grid">
+          <div className="card">
+            <h3>Choferes verificados</h3>
+            <p className="muted">Conductores seleccionados, experiencia premium y protocolos de seguridad.</p>
+          </div>
+          <div className="card">
+            <h3>Seguimiento en vivo</h3>
+            <p className="muted">Comparte tu ruta y hora estimada de llegada con un clic.</p>
+          </div>
+          <div className="card">
+            <h3>Soporte humano 24/7</h3>
+            <p className="muted">Estamos contigo antes, durante y después del viaje.</p>
+          </div>
         </div>
-
-        <div>
-          <h2 className="h2">Dashboard</h2>
-          <p className="muted" style={{margin:"6px 0 10px"}}>Panel para ver reservas y conductores.</p>
-          <Link href="/dashboard">Ir al Dashboard →</Link>
-        </div>
-      </div>
-    </main>
+      </section>
+    </>
   );
 }
