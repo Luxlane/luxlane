@@ -11,11 +11,21 @@ return (
       </div>
     )}
     {result && !result.ok && (
-      <div className="badge error" style={{marginBottom:16}}>
-        ⚠️ {result.error}
-      </div>
-    )}
+      <div>
+  <label className="label">Notas (opcional)</label>
+  <textarea
+    className="textarea"
+    rows={4}
+    value={form.notes}
+    onChange={(e) => set("notes", e.target.value)}
+  />
+</div>
 
+<div style={{ display: "flex", gap: 12 }}>
+  <button className="btn" type="submit" disabled={loading}>
+    {loading ? "Enviando…" : "Confirmar reserva"}
+  </button>
+</div>
     <form onSubmit={onSubmit} className="form">
       <div className="row">
         <div>
