@@ -1,98 +1,74 @@
-// app/api/book/route.ts
 import { NextResponse } from "next/server";
-
-type Booking = {
-  name: string;
-  email: string;
-  phone?: string;
-  date: string;
-  from: string;
-  to: string;
-  notes?: string;
-};
-
-async function readBody(req: Request): Promise<Booking> {
-  // Intento 1: JSON
-  try {
-    const ct = req.headers.get("content-type") || "";
-    if (ct.includes("application/json")) {
-      const j = await req.json();
-      return {
-        name: String(j.name || ""),
-        email: String(j.email || ""),
-        phone: String(j.phone || ""),
-        date: String(j.date || ""),
-        from: String(j.pickup || j.from || ""),
-        to: String(j.dropoff || j.to || ""),
-        notes: String(j.notes || ""),
-      };
-    }
-  } catch {}
-
-  // Intento 2: form-data
-  try {
-    const form = await req.formData();
-    return {
-      name: String(form.get("name") || ""),
-      email: String(form.get("email") || ""),
-      phone: String(form.get("phone") || ""),
-      date: String(form.get("date") || ""),
-      from: String(form.get("pickup") || form.get("from") || ""),
-      to: String(form.get("dropoff") || form.get("to") || ""),
-      notes: String(form.get("notes") || ""),
-    };
-  } catch {}
-
-  return {
-    name: "", email: "", phone: "", date: "", from: "", to: "", notes: "",
-  };
-}
 
 export async function POST(req: Request) {
   try {
-    const data = await readBody(req);
+    // Tu formulario envía JSON, así que leemos JSON
+    const body = await req.json();
+
+    const {
+      name = "",
+      email = "",
+      phone = "",
+      date = "",
+      pickup = "",   // antes llamabas "from"
+      dropoff = "",  // antes llamabas "to"
+      notes = "",
+    } = body || {};
 
     // Validación mínima
-    if (!data.name || !data.email || !data.date || !data.from || !data.to) {
+    if (!name || !email || !date || !pickup || !dropoff) {
       return NextResponse.json(
         { ok: false, error: "Faltan campos obligatorios." },
         { status: 400 }
       );
     }
 
-    // (Opcional) Email vía Resend si configuras las variables
-    const RESEND_API_KEY = process.env.RESEND_API_KEY;
-    const TO = process.env.BOOKING_TO_EMAIL || data.email; // por defecto avisamos al cliente
-    const FROM = process.env.BOOKING_FROM_EMAIL || "reservas@luxlane.example.com";
+    // ID de referencia simple
+    const id = "LL-" + Math.random().toString(36).slice(2, 8).toUpperCase();
 
-    if (RESEND_API_KEY && TO && FROM) {
-      await fetch("https://api.resend.com/emails", {
+    // ENV de Vercel (asegúrate que están creadas)
+    const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
+    const TO = process.env.BOOKING_TO_EMAIL || "";
+    // Mientras no verifiques tu dominio en Resend, usa el remitente sandbox:
+    const FROM =
+      process.env.BOOKING_FROM_EMAIL || "Lux Lane <onboarding@resend.dev>";
+
+    // Enviar email (si hay API key y destinatario configurados)
+    if (RESEND_API_KEY && TO) {
+      const r = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${RESEND_API_KEY}`,
+          Authorization: `Bearer ${RESEND_API_KEY}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           from: FROM,
-          to: TO,
-          subject: `Nueva reserva - ${data.name}`,
-          text:
-            `Gracias por tu reserva.\n\n` +
-            `Nombre: ${data.name}\n` +
-            `Email: ${data.email}\n` +
-            `Teléfono: ${data.phone || "-"}\n` +
-            `Fecha/Hora: ${data.date}\n` +
-            `Desde: ${data.from}\n` +
-            `Hasta: ${data.to}\n` +
-            `Notas: ${data.notes || "-"}\n`,
+          to: [TO, email], // copia al cliente
+          subject: `Nueva reserva #${id} — ${name}`,
+          text: [
+            `Reserva #${id}`,
+            `Nombre: ${name}`,
+            `Email: ${email}`,
+            `Teléfono: ${phone}`,
+            `Fecha/Hora: ${date}`,
+            `Recogida: ${pickup}`,
+            `Destino: ${dropoff}`,
+            `Notas: ${notes || "-"}`,
+          ].join("\n"),
         }),
-      }).catch(() => {});
+      });
+
+      if (!r.ok) {
+        const info = await r.text();
+        console.error("Resend error:", info);
+        return NextResponse.json(
+          { ok: false, error: "No se pudo enviar el correo." },
+          { status: 500 }
+        );
+      }
     }
 
-    const id = Math.random().toString(36).slice(2, 8).toUpperCase();
-
-    console.log("Nueva reserva", { id, ...data }); // ← esto lo verás en Vercel Logs
-
+    // Respuesta al frontend
     return NextResponse.json({ ok: true, id });
   } catch (err) {
     console.error(err);
