@@ -1,24 +1,64 @@
+// app/api/book/route.ts
+import { NextResponse } from "next/server";
+
 export async function POST(req: Request) {
   try {
-    const data = await req.json();
+    const form = await req.formData();
 
-    // Validación simple (lado servidor)
-    const required = ["name", "email", "phone", "date", "pickup", "dropoff"];
-    for (const k of required) {
-      if (!data?.[k]) {
-        return Response.json({ ok: false, error: `Falta el campo: ${k}` }, { status: 400 });
-      }
+    const name = String(form.get("name") || "");
+    const email = String(form.get("email") || "");
+    const date = String(form.get("date") || "");
+    const from = String(form.get("from") || "");
+    const to = String(form.get("to") || "");
+    const notes = String(form.get("notes") || "");
+
+    // Validación mínima
+    if (!name || !email || !date || !from || !to) {
+      return NextResponse.json(
+        { ok: false, error: "Faltan campos obligatorios." },
+        { status: 400 }
+      );
     }
 
-    // Genera un ID de referencia sencillo (ej: LUX-839201)
-    const id = `LUX-${Math.floor(100000 + Math.random() * 900000)}`;
+    // 🔵 (Opcional) Enviar email con Resend si configuras la API key.
+    const RESEND_API_KEY = process.env.RESEND_API_KEY;
+    const TO = process.env.BOOKING_TO_EMAIL || email; // destinatario por defecto: el propio cliente
+    const FROM =
+      process.env.BOOKING_FROM_EMAIL || "reservas@luxlane.example.com";
 
-    // Aquí podríamos: guardar en DB, enviar email, Slack, etc.
-    // Por ahora, lo dejamos logueado (verás esto en Vercel → Functions logs)
-    console.log("Nueva reserva:", { id, ...data });
+    if (RESEND_API_KEY && TO && FROM) {
+      await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${RESEND_API_KEY}`,
+        },
+        body: JSON.stringify({
+          to: TO,
+          from: FROM,
+          subject: `Nueva reserva de ${name}`,
+          html: `
+            <h2>Nueva reserva</h2>
+            <p><strong>Nombre:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Fecha:</strong> ${date}</p>
+            <p><strong>Desde:</strong> ${from}</p>
+            <p><strong>Hasta:</strong> ${to}</p>
+            <p><strong>Notas:</strong> ${notes || "(sin notas)"}</p>
+          `,
+        }),
+      });
+    }
 
-    return Response.json({ ok: true, id });
-  } catch (err: any) {
-    return Response.json({ ok: false, error: err.message || "Error" }, { status: 500 });
+    // Deja un registro en los logs de Vercel (para que lo veas enseguida)
+    console.log("Nueva reserva:", { name, email, date, from, to, notes });
+
+    return NextResponse.redirect(new URL("/book?ok=1", req.url)); // vuelve a /book con ?ok=1
+  } catch (err) {
+    console.error("Error en /api/book:", err);
+    return NextResponse.json(
+      { ok: false, error: "Error procesando la reserva." },
+      { status: 500 }
+    );
   }
 }
