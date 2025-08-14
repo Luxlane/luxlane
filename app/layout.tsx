@@ -1,10 +1,10 @@
-import './globals.css';
-import Link from 'next/link';
-import type { ReactNode } from 'react';
+import "./globals.css";
+import Link from "next/link";
+import type { ReactNode } from "react";
 
 export const metadata = {
-  title: 'LUX LANE — Transporte premium con tracking',
-  description: 'Viajes con chofer verificado, seguimiento en vivo y soporte 24/7.',
+  title: "LUX LANE — Transporte premium con tracking",
+  description: "Choferes verificados, seguimiento en vivo y soporte 24/7.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -13,7 +13,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <header className="topbar">
           <div className="wrap">
-            <div className="brand">LUX LANE</div>
+            <div className="brand">
+              <span className="logo" />
+              LUX LANE
+            </div>
             <nav className="nav">
               <Link href="/book">Reservar</Link>
               <Link href="/track/demo-trip">Rastrear mi viaje</Link>
@@ -21,7 +24,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </nav>
           </div>
         </header>
+
         <main className="container">{children}</main>
+
+        <footer className="footer">
+          <div className="wrap">
+            <div style={{marginRight:"auto"}}>© {new Date().getFullYear()} LUX LANE</div>
+            <Link href="/book">Reservar</Link>
+            <Link href="/track/demo-trip" style={{marginLeft:12}}>Tracking</Link>
+            <Link href="/dashboard" style={{marginLeft:12}}>Dashboard</Link>
+            <a href="mailto:contacto@luxlane.com" style={{marginLeft:12}}>Contacto</a>
+          </div>
+        </footer>
       </body>
     </html>
   );
