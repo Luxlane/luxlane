@@ -1,79 +1,103 @@
+// app/api/book/route.ts
 import { NextResponse } from "next/server";
 
-function asString(v: any, fallback = "") {
-  return typeof v === "string" ? v : fallback;
+type Booking = {
+  name: string;
+  email: string;
+  phone?: string;
+  date: string;
+  from: string;
+  to: string;
+  notes?: string;
+};
+
+async function readBody(req: Request): Promise<Booking> {
+  // Intento 1: JSON
+  try {
+    const ct = req.headers.get("content-type") || "";
+    if (ct.includes("application/json")) {
+      const j = await req.json();
+      return {
+        name: String(j.name || ""),
+        email: String(j.email || ""),
+        phone: String(j.phone || ""),
+        date: String(j.date || ""),
+        from: String(j.pickup || j.from || ""),
+        to: String(j.dropoff || j.to || ""),
+        notes: String(j.notes || ""),
+      };
+    }
+  } catch {}
+
+  // Intento 2: form-data
+  try {
+    const form = await req.formData();
+    return {
+      name: String(form.get("name") || ""),
+      email: String(form.get("email") || ""),
+      phone: String(form.get("phone") || ""),
+      date: String(form.get("date") || ""),
+      from: String(form.get("pickup") || form.get("from") || ""),
+      to: String(form.get("dropoff") || form.get("to") || ""),
+      notes: String(form.get("notes") || ""),
+    };
+  } catch {}
+
+  return {
+    name: "", email: "", phone: "", date: "", from: "", to: "", notes: "",
+  };
 }
 
 export async function POST(req: Request) {
   try {
-    // 1) Acepta JSON o form-data
-    let payload: any = {};
-    const ct = req.headers.get("content-type") || "";
-    if (ct.includes("application/json")) {
-      payload = await req.json();
-    } else {
-      const form = await req.formData();
-      payload = Object.fromEntries(form.entries());
-    }
+    const data = await readBody(req);
 
-    // 2) Normaliza nombres (tu UI usa phone/pickup/dropoff)
-    const name = asString(payload.name);
-    const email = asString(payload.email);
-    const phone = asString(payload.phone);
-    const date = asString(payload.date);
-    const from = asString(payload.from) || asString(payload.pickup);
-    const to = asString(payload.to) || asString(payload.dropoff);
-    const notes = asString(payload.notes);
-
-    // 3) Validación mínima
-    if (!name || !email || !date || !from || !to) {
+    // Validación mínima
+    if (!data.name || !data.email || !data.date || !data.from || !data.to) {
       return NextResponse.json(
         { ok: false, error: "Faltan campos obligatorios." },
         { status: 400 }
       );
     }
 
-    // ID simple para mostrar al usuario
-    const id = Math.random().toString(36).slice(2, 8).toUpperCase();
-
-    // 4) (Opcional) Enviar email con Resend si configuraste variables
+    // (Opcional) Email vía Resend si configuras las variables
     const RESEND_API_KEY = process.env.RESEND_API_KEY;
-    const TO = process.env.BOOKING_TO_EMAIL || email; // si no configuras, se lo mandamos al cliente
-    const FROM =
-      process.env.BOOKING_FROM_EMAIL || "reservas@luxlane.example.com";
+    const TO = process.env.BOOKING_TO_EMAIL || data.email; // por defecto avisamos al cliente
+    const FROM = process.env.BOOKING_FROM_EMAIL || "reservas@luxlane.example.com";
 
-    if (RESEND_API_KEY && FROM && TO) {
+    if (RESEND_API_KEY && TO && FROM) {
       await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${RESEND_API_KEY}`,
+          "Authorization": `Bearer ${RESEND_API_KEY}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           from: FROM,
-          to: [TO],
-          subject: `Nueva reserva ${id} - ${name}`,
+          to: TO,
+          subject: `Nueva reserva - ${data.name}`,
           text:
-            `Nueva reserva\n\n` +
-            `Nombre: ${name}\n` +
-            `Email: ${email}\n` +
-            `Tel: ${phone || "-"}\n` +
-            `Fecha: ${date}\n` +
-            `Desde: ${from}\n` +
-            `Hasta: ${to}\n` +
-            `Notas: ${notes || "-"}`,
+            `Gracias por tu reserva.\n\n` +
+            `Nombre: ${data.name}\n` +
+            `Email: ${data.email}\n` +
+            `Teléfono: ${data.phone || "-"}\n` +
+            `Fecha/Hora: ${data.date}\n` +
+            `Desde: ${data.from}\n` +
+            `Hasta: ${data.to}\n` +
+            `Notas: ${data.notes || "-"}\n`,
         }),
-      });
+      }).catch(() => {});
     }
 
-    // 5) Log para verlo en Vercel → Logs
-    console.log("Nueva reserva", { id, name, email, phone, date, from, to, notes });
+    const id = Math.random().toString(36).slice(2, 8).toUpperCase();
 
-    return NextResponse.json({ ok: true, id }, { status: 200 });
+    console.log("Nueva reserva", { id, ...data }); // ← esto lo verás en Vercel Logs
+
+    return NextResponse.json({ ok: true, id });
   } catch (err) {
-    console.error("Error en /api/book", err);
+    console.error(err);
     return NextResponse.json(
-      { ok: false, error: "Error interno" },
+      { ok: false, error: "Error del servidor." },
       { status: 500 }
     );
   }
