@@ -31,3 +31,73 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .badge{display:inline-flex;align-items:center;gap:8px;background:#0f1116;border:1px solid #2b3140;padding:8px 12px;border-radius:999px}
 .success{background:#0d1a14;border-color:#1e3a28;color:#a7f3d0}
 .error{background:#1a0d0d;border-color:#3a1e1e;color:#fecaca}
+/* ---------- Base ---------- */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: #0f172a;           /* slate-900 */
+  background: #f8fafc;     /* slate-50 */
+}
+
+/* ---------- Nav ---------- */
+nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #ffffff;
+}
+nav .brand {
+  font-weight: 800;
+  letter-spacing: .4px;
+  margin-right: auto;
+}
+nav a {
+  color: #111827;
+  text-decoration: none;
+  font-weight: 500;
+}
+nav a:hover { text-decoration: underline; }
+
+/* ---------- Layout helpers ---------- */
+.container {
+  max-width: 980px;
+  margin: 32px auto;
+  padding: 0 20px;
+}
+.h1 { font-size: 32px; line-height: 1.2; margin: 8px 0 12px; }
+.h2 { font-size: 20px; margin: 0 0 6px; }
+.muted { color: #6b7280; }
+
+/* Tarjeta / sección */
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+}
+
+/* Botón y campos (para /book) */
+.btn {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #111827;
+  background: #111827;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn:hover { opacity: .95; }
+
+.input, .textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+}
