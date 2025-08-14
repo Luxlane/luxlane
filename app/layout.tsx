@@ -1,17 +1,25 @@
-import './globals.css';
-import Nav from '@/components/Nav';
-
-export const metadata = {
-  title: 'LUX LANE Transport',
-  description: 'Transporte premium con tracking en tiempo real'
-};
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
-      <body style={{fontFamily:'ui-sans-serif, system-ui'}}>
-        <Nav />
-        <main style={{padding:24, maxWidth:980, margin:'0 auto'}}>{children}</main>
+      <body>
+        <header className="nav">
+          <div className="container nav-inner">
+            <div className="brand">
+              <a href="/">
+                <span className="logo" />
+                LUX LANE
+              </a>
+            </div>
+            <nav className="menu">
+              <a href="/book">Reservar</a>
+              <a href="/track/demo-trip">Rastrear mi viaje</a>
+              <a href="/dashboard">Dashboard</a>
+            </nav>
+          </div>
+        </header>
+        <main className="container">
+          {children}
+        </main>
       </body>
     </html>
   );
