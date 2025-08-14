@@ -1,18 +1,31 @@
-// app/api/book/route.ts
 import { NextResponse } from "next/server";
+
+function asString(v: any, fallback = "") {
+  return typeof v === "string" ? v : fallback;
+}
 
 export async function POST(req: Request) {
   try {
-    const form = await req.formData();
+    // 1) Acepta JSON o form-data
+    let payload: any = {};
+    const ct = req.headers.get("content-type") || "";
+    if (ct.includes("application/json")) {
+      payload = await req.json();
+    } else {
+      const form = await req.formData();
+      payload = Object.fromEntries(form.entries());
+    }
 
-    const name = String(form.get("name") || "");
-    const email = String(form.get("email") || "");
-    const date = String(form.get("date") || "");
-    const from = String(form.get("from") || "");
-    const to = String(form.get("to") || "");
-    const notes = String(form.get("notes") || "");
+    // 2) Normaliza nombres (tu UI usa phone/pickup/dropoff)
+    const name = asString(payload.name);
+    const email = asString(payload.email);
+    const phone = asString(payload.phone);
+    const date = asString(payload.date);
+    const from = asString(payload.from) || asString(payload.pickup);
+    const to = asString(payload.to) || asString(payload.dropoff);
+    const notes = asString(payload.notes);
 
-    // Validación mínima
+    // 3) Validación mínima
     if (!name || !email || !date || !from || !to) {
       return NextResponse.json(
         { ok: false, error: "Faltan campos obligatorios." },
@@ -20,44 +33,47 @@ export async function POST(req: Request) {
       );
     }
 
-    // 🔵 (Opcional) Enviar email con Resend si configuras la API key.
+    // ID simple para mostrar al usuario
+    const id = Math.random().toString(36).slice(2, 8).toUpperCase();
+
+    // 4) (Opcional) Enviar email con Resend si configuraste variables
     const RESEND_API_KEY = process.env.RESEND_API_KEY;
-    const TO = process.env.BOOKING_TO_EMAIL || email; // destinatario por defecto: el propio cliente
+    const TO = process.env.BOOKING_TO_EMAIL || email; // si no configuras, se lo mandamos al cliente
     const FROM =
       process.env.BOOKING_FROM_EMAIL || "reservas@luxlane.example.com";
 
-    if (RESEND_API_KEY && TO && FROM) {
+    if (RESEND_API_KEY && FROM && TO) {
       await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${RESEND_API_KEY}`,
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          to: TO,
           from: FROM,
-          subject: `Nueva reserva de ${name}`,
-          html: `
-            <h2>Nueva reserva</h2>
-            <p><strong>Nombre:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Fecha:</strong> ${date}</p>
-            <p><strong>Desde:</strong> ${from}</p>
-            <p><strong>Hasta:</strong> ${to}</p>
-            <p><strong>Notas:</strong> ${notes || "(sin notas)"}</p>
-          `,
+          to: [TO],
+          subject: `Nueva reserva ${id} - ${name}`,
+          text:
+            `Nueva reserva\n\n` +
+            `Nombre: ${name}\n` +
+            `Email: ${email}\n` +
+            `Tel: ${phone || "-"}\n` +
+            `Fecha: ${date}\n` +
+            `Desde: ${from}\n` +
+            `Hasta: ${to}\n` +
+            `Notas: ${notes || "-"}`,
         }),
       });
     }
 
-    // Deja un registro en los logs de Vercel (para que lo veas enseguida)
-    console.log("Nueva reserva:", { name, email, date, from, to, notes });
+    // 5) Log para verlo en Vercel → Logs
+    console.log("Nueva reserva", { id, name, email, phone, date, from, to, notes });
 
-    return NextResponse.redirect(new URL("/book?ok=1", req.url)); // vuelve a /book con ?ok=1
+    return NextResponse.json({ ok: true, id }, { status: 200 });
   } catch (err) {
-    console.error("Error en /api/book:", err);
+    console.error("Error en /api/book", err);
     return NextResponse.json(
-      { ok: false, error: "Error procesando la reserva." },
+      { ok: false, error: "Error interno" },
       { status: 500 }
     );
   }
