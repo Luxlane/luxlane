@@ -159,3 +159,16 @@ a.cta:hover { text-decoration: underline; }
   .container { padding-top: 24px; }
   .card { grid-column: span 12; }
 }
+/* ===== Logo por modo ===== */
+.logo-dark {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .logo-light {
+    display: none;
+  }
+  .logo-dark {
+    display: inline;
+  }
+}
