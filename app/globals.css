@@ -1,108 +1,91 @@
-/* ----------- Reset & tokens ----------- */
-*{box-sizing:border-box} html,body{height:100%}
-:root{
-  --bg:#0b0b0c;            /* fondo app */
-  --surface:#111317;       /* tarjetas/blocks */
-  --muted:#9aa3af;         /* texto apagado */
-  --text:#e6e7eb;          /* texto principal */
-  --brand:#00e0a4;         /* acento (verde agua) */
-  --brand-2:#4f46e5;       /* acento secundario */
-  --stroke:#1f2430;        /* bordes */
-  --radius:14px;
-  --shadow:0 10px 25px rgba(0,0,0,.35);
-}
-body{
-  margin:0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  background: radial-gradient(1200px 800px at 10% -10%, #0c1320, transparent 60%), var(--bg);
-  color:var(--text);
+/* ===== Reset básico ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* ----------- Layout ----------- */
-.container{max-width:1120px;margin:0 auto;padding:24px}
-.section{margin:48px 0}
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f9f9f9;
+  color: #111;
+  line-height: 1.5;
+  padding: 20px;
+}
 
-/* ----------- Topbar ----------- */
-.topbar{
-  position:sticky; top:0; z-index:20;
-  backdrop-filter: blur(8px);
-  background: rgba(11,11,12,.65);
-  border-bottom:1px solid var(--stroke);
+/* ===== Títulos ===== */
+.h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
 }
-.topbar .wrap{
-  display:flex; align-items:center; gap:18px;
-  padding:14px 24px; max-width:1120px; margin:0 auto;
-}
-.brand{font-weight:800; letter-spacing:.4px}
-.nav{margin-left:auto; display:flex; gap:18px}
-.nav a{
-  color:var(--text); text-decoration:none; opacity:.9
-}
-.nav a:hover{opacity:1}
 
-/* ----------- Hero ----------- */
-.hero{
-  display:grid; gap:16px; padding:56px 0 28px;
+.muted {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 1.5rem;
 }
-.h1{font-size:38px; line-height:1.15; margin:0}
-.lead{color:var(--muted); max-width:720px}
 
-/* ----------- Cards ----------- */
-.grid-3{
-  display:grid; gap:18px;
-  grid-template-columns: repeat(3, minmax(0,1fr));
+/* ===== Formularios ===== */
+.form {
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  max-width: 800px;
+  margin: auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
-.card{
-  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
-  border:1px solid var(--stroke);
-  border-radius:var(--radius);
-  padding:18px;
-  box-shadow: var(--shadow);
-}
-.card h3{margin:0 0 6px; font-size:18px}
-.card p{margin:0; color:var(--muted)}
 
-/* ----------- Buttons ----------- */
-.btn{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:12px 16px; border-radius:12px;
-  border:1px solid transparent; text-decoration:none;
-  font-weight:600; cursor:pointer;
+.label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 6px;
 }
-.btn-primary{
-  background:linear-gradient(135deg, var(--brand), var(--brand-2));
-  color:#0b0b0c;
-}
-.btn-primary:hover{filter:saturate(1.2) brightness(1.02)}
-.btn-ghost{
-  border-color:var(--stroke); color:var(--text); background:transparent;
-}
-.btn-ghost:hover{border-color:#2b3242}
 
-/* ----------- Form (book) ----------- */
-.form{
-  display:grid; gap:18px; background:var(--surface);
-  border:1px solid var(--stroke); border-radius:var(--radius);
-  padding:22px; box-shadow:var(--shadow);
+.input,
+.textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
 }
-.row-2{display:grid; gap:18px; grid-template-columns:repeat(2, minmax(0,1fr))}
-.label{display:block; font-size:12px; letter-spacing:.4px; color:var(--muted); margin:0 0 8px}
-.input,.textarea{
-  width:100%; padding:12px 12px; border-radius:10px;
-  border:1px solid #2a3140; background:#0d0f14; color:var(--text);
-  outline:none; transition:border-color .15s ease;
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: #111;
 }
-.input:focus,.textarea:focus{border-color:#3b4357}
-.textarea{resize:vertical}
 
-/* ----------- Utils ----------- */
-.muted{color:var(--muted)}
-.center{display:flex; align-items:center; justify-content:center}
-.spacer{height:12px}
+/* ===== Layout en 2 columnas ===== */
+.row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
 
-/* ----------- Responsive ----------- */
-@media (max-width:920px){
-  .grid-3{grid-template-columns:1fr}
-  .row-2{grid-template-columns:1fr}
-  .h1{font-size:30px}
+/* ===== Botones ===== */
+.btn {
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background-color: #111;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #333;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
