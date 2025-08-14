@@ -5,7 +5,7 @@ export default function Home() {
     <main style={{ maxWidth: 980, margin: "40px auto", padding: 24 }}>
       <h1 style={{ fontSize: 28, marginBottom: 12 }}>Bienvenido a LUX LANE</h1>
       <p style={{ marginBottom: 24 }}>
-        Demo del sitio. Usa el menú o estos accesos rápidos:
+        Demo del sitio actualizado. Usa el menú o estos accesos rápidos:
       </p>
       <ul style={{ lineHeight: 1.9 }}>
         <li>
