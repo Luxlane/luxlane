@@ -172,3 +172,24 @@ a.cta:hover { text-decoration: underline; }
     display: inline;
   }
 }
+/* ==== Logo auto claro/oscuro ==== */
+/* Por defecto mostramos el oscuro y ocultamos el claro */
+.logo-light { display: none; }
+.logo-dark  { display: inline-block; }
+
+/* Si el sistema está en modo claro, invertimos: */
+@media (prefers-color-scheme: light) {
+  .logo-light { display: inline-block; }
+  .logo-dark  { display: none; }
+}
+
+/* Ajustes finos para nitidez y tamaño consistente */
+.logo-light, .logo-dark {
+  height: 44px;         /* alto visual; Next/Image mantiene proporción */
+  width: auto;          /* deja que el ancho se calcule por proporción */
+  object-fit: contain;  /* por si el arte viene con padding */
+  image-rendering: -webkit-optimize-contrast;
+}
+@media (min-width: 1024px) {
+  .logo-light, .logo-dark { height: 52px; }
+}
