@@ -1,6 +1,7 @@
 // app/layout.tsx
 import './globals.css'
 import type { ReactNode } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 
 export const metadata = {
@@ -14,29 +15,29 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <header className="topbar">
           <div className="wrap">
-            {/* Logo con enlace al home */}
             <div className="brand">
-              <Link href="/" aria-label="LUX LANE Home">
-                {/* Logo claro */}
-                <img
-                  src="/logo/Luxlane-light.png.jpg"
-                  alt="LUX LANE Logo claro"
+              <Link href="/" className="brandLink" aria-label="LUX LANE Home">
+                {/* Logo versión clara */}
+                <Image
+                  src="/logo/luxlane-light.png"
+                  alt="LUX LANE"
+                  width={220}
+                  height={60}
+                  priority
                   className="logo-light"
-                  width={180}
-                  height={32}
                 />
-                {/* Logo oscuro */}
-                <img
-                  src="/logo/luxlane-dark.png.jpg"
-                  alt="LUX LANE Logo oscuro"
+                {/* Logo versión oscura */}
+                <Image
+                  src="/logo/luxlane-dark.png"
+                  alt="LUX LANE"
+                  width={220}
+                  height={60}
+                  priority
                   className="logo-dark"
-                  width={180}
-                  height={32}
                 />
               </Link>
             </div>
 
-            {/* Navegación */}
             <nav className="nav">
               <Link href="/book">Reservar</Link>
               <Link href="/track/demo-trip">Rastrear mi viaje</Link>
