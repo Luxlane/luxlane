@@ -8,7 +8,7 @@ export default function Home() {
       <section className="hero-full">
         <img
           className="hero-media"
-          src="https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=1920&auto=format&fit=crop"
+          src="public/images/hero.jpg (1920×1080 o 2400×1350, ≤ 400 KB)"
           alt="Flota ejecutiva en ciudad"
         />
         <div className="hero-overlay" />
