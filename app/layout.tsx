@@ -1,6 +1,7 @@
 // app/layout.tsx
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
+
 import "./globals.css";
 import type { ReactNode } from "react";
 import Image from "next/image";
