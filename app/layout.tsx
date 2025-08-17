@@ -1,5 +1,4 @@
-// app/layout.tsx
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 import "./globals.css";
@@ -7,8 +6,8 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { cookies } from "next/headers";
-import { getDict } from "../i18n";
-import LangSwitcher from "@/components/LangSwitcher";
+import { getDict } from "../i18n"; // ajusta si tu carpeta está en otro lado
+import LangSwitcher from "../components/LangSwitcher"; // ajusta si tu archivo está en otra carpeta
 
 export const metadata = {
   title: "LuxLine Transport",
@@ -52,7 +51,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <footer className="footer">
           <div className="wrap footer-inner">
             <small>© {new Date().getFullYear()} LuxLine Transport</small>
-            <a className="footer-link" href="mailto:contacto@luxline.com">Contacto</a>
+            <a className="footer-link" href="mailto:contacto@luxline.com">
+              Contacto
+            </a>
           </div>
         </footer>
       </body>
