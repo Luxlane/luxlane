@@ -4,7 +4,7 @@ export const revalidate = 0;
 
 import Link from "next/link";
 import { cookies } from "next/headers";
-import { getDict } from "@/i18n";
+import { getDict } from "../i18n";
 
 export default function Home() {
   const lang = (cookies().get("lang")?.value || "es") as "es" | "en";
