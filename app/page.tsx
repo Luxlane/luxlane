@@ -101,7 +101,74 @@ export default function Home() {
           </div>
         </div>
       </section>
+{/* CITY‑TO‑CITY / COMPARATIVA */}
+<section className="section c2c">
+  <div className="wrap">
+    <div className="c2c-head">
+      <h2 className="section-title">City‑to‑City Premium Service, la mejor forma de viajar entre ciudades</h2>
+      <p className="muted">
+        Despídete del estrés de vuelos cortos, estaciones y alquileres. Con <strong>LuxLine Transport</strong>
+        viajas puerta a puerta en confort premium, con chofer profesional y total flexibilidad.
+      </p>
+    </div>
 
+    <div className="compare">
+      {/* Avión */}
+      <article className="compare-card">
+        <div className="compare-top">
+          <span className="compare-emoji">✈️</span>
+          <h3>Avión</h3>
+          <span className="badge time">Tiempo total: 5h+</span>
+        </div>
+        <ul className="compare-list">
+          <li>Traslado al aeropuerto · 45 min</li>
+          <li>Check‑in & seguridad · 2 h</li>
+          <li>Vuelo · 1 h</li>
+          <li>Equipaje & salida · 45 min</li>
+          <li>Traslado al destino · 45 min</li>
+        </ul>
+      </article>
+
+      {/* Tren */}
+      <article className="compare-card">
+        <div className="compare-top">
+          <span className="compare-emoji">🚆</span>
+          <h3>Tren</h3>
+          <span className="badge time">Tiempo total: hasta 5h</span>
+        </div>
+        <ul className="compare-list">
+          <li>Traslado a estación · 45 min</li>
+          <li>Embarque · 30 min</li>
+          <li>Viaje · 3 h</li>
+          <li>Desembarque · 30 min</li>
+          <li>Traslado al destino · 45 min</li>
+        </ul>
+      </article>
+
+      {/* LuxLine */}
+      <article className="compare-card compare-brand">
+        <div className="compare-top">
+          <span className="compare-emoji">🚘</span>
+          <h3>LuxLine Transport</h3>
+          <span className="badge time brand">Tiempo total: ~4h</span>
+        </div>
+        <ul className="compare-list">
+          <li>Puerta a puerta, sin filas ni transbordos</li>
+          <li>Eliges hora y cambios hasta 1 h antes</li>
+          <li>Confort premium con chofer profesional</li>
+          <li>Tarifas claras (peajes/impuestos incluidos)</li>
+          <li>Wi‑Fi disponible en la mayoría de vehículos</li>
+        </ul>
+
+        <div className="compare-cta">
+          <a href="/book" className="btn btn-primary">Reservar City‑to‑City</a>
+          <a href="/dashboard" className="btn btn-ghost">Hablar con ventas</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+      
       {/* CORPORATIVO */}
       <section className="section corporate">
         <div className="wrap corporate-inner">
