@@ -8,7 +8,7 @@ export default function Home() {
       <section className="hero-full">
         <img
           className="hero-media"
-          src="public/images/hero.jpg (1920×1080 o 2400×1350, ≤ 400 KB)"
+          src="/images/hero.jpg"
           alt="Flota ejecutiva en ciudad"
         />
         <div className="hero-overlay" />
@@ -50,7 +50,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SERVICIOS DESTACADOS (tipo Blacklane) */}
+      {/* SERVICIOS DESTACADOS */}
       <section className="section">
         <div className="wrap">
           <h2 className="section-title">Servicios para cada ocasión</h2>
@@ -58,7 +58,7 @@ export default function Home() {
           <div className="services">
             <article className="service-card">
               <img
-                src="https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?q=80&w=1200&auto=format&fit=crop"
+                src="/images/service-airport.jpg"
                 alt="Traslados aeropuerto"
               />
               <div className="service-content">
@@ -69,7 +69,7 @@ export default function Home() {
 
             <article className="service-card">
               <img
-                src="https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=1200&auto=format&fit=crop"
+                src="/images/service-business.jpg"
                 alt="Viajes ejecutivos"
               />
               <div className="service-content">
@@ -80,7 +80,7 @@ export default function Home() {
 
             <article className="service-card">
               <img
-                src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop"
+                src="/images/service-city.jpg"
                 alt="City to City"
               />
               <div className="service-content">
@@ -91,7 +91,7 @@ export default function Home() {
 
             <article className="service-card">
               <img
-                src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=1200&auto=format&fit=crop"
+                src="/images/service-partners.jpg"
                 alt="Clientes y socios"
               />
               <div className="service-content">
@@ -120,7 +120,7 @@ export default function Home() {
           </div>
           <div className="corporate-media">
             <img
-              src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=1200&auto=format&fit=crop"
+              src="/images/corporate.jpg"
               alt="Recepción corporativa"
             />
           </div>
