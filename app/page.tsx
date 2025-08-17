@@ -1,4 +1,7 @@
 // app/page.tsx
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { getDict } from "@/i18n";
