@@ -65,3 +65,6 @@ const es = {
   },
 };
 export default es;
+footer: {
+  contact: "Contacto",
+},
