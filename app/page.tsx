@@ -4,26 +4,134 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
+      {/* HERO con formulario de reserva inline (tipo Blacklane) */}
       <section className="hero-full">
-  <img
-    className="hero-media"
-    src="/images/hero.jpg"
-    alt="Flota ejecutiva en ciudad"
-  />
-  <div className="hero-overlay" />
-  <div className="wrap hero-content">
-    <span className="kicker">Transporte premium con tracking</span>
-    <h1 className="hero-title">Viaja seguro, a tiempo y con estilo.</h1>
-    <p className="hero-sub">
-      Servicio ejecutivo — choferes verificados, seguimiento en vivo y soporte 24/7.
-    </p>
-    <div className="hero-actions">
-      <Link href="/book" className="btn btn-primary">Reservar ahora</Link>
-      <Link href="/track/demo-trip" className="btn btn-ghost">Ver tracking demo →</Link>
-    </div>
-  </div>
-</section>
-      
+        <img
+          className="hero-media"
+          src="/images/hero.jpg"
+          alt="Flota ejecutiva en ciudad"
+        />
+        <div className="hero-overlay" />
+
+        <div className="wrap hero-content">
+          <div className="hero-top">
+            <span className="kicker">Transporte premium con tracking</span>
+            <h1 className="hero-title">Viaja seguro, a tiempo y con estilo.</h1>
+            <p className="hero-sub">
+              Servicio ejecutivo — choferes verificados, seguimiento en vivo y soporte 24/7.
+            </p>
+          </div>
+
+          {/* Booking Inline */}
+          <form className="booking" action="/book" method="GET">
+            {/* Tabs servicio */}
+            <div className="booking-tabs" role="tablist" aria-label="Tipo de servicio">
+              <label className="tab">
+                <input type="radio" name="service" value="oneway" defaultChecked />
+                <span>Solo ida</span>
+              </label>
+              <label className="tab">
+                <input type="radio" name="service" value="hourly" />
+                <span>Por horas</span>
+              </label>
+              <label className="tab">
+                <input type="radio" name="service" value="airport" />
+                <span>Aeropuerto</span>
+              </label>
+              <label className="tab">
+                <input type="radio" name="service" value="city2city" />
+                <span>City‑to‑City</span>
+              </label>
+            </div>
+
+            {/* Campos */}
+            <div className="booking-grid">
+              <div className="field">
+                <label className="label">Desde</label>
+                <input
+                  className="input"
+                  name="from"
+                  placeholder="Dirección o punto de recogida"
+                  required
+                />
+              </div>
+              <div className="field">
+                <label className="label">Hasta</label>
+                <input
+                  className="input"
+                  name="to"
+                  placeholder="Destino"
+                  required
+                />
+              </div>
+              <div className="field">
+                <label className="label">Fecha</label>
+                <input className="input" type="date" name="date" required />
+              </div>
+              <div className="field">
+                <label className="label">Hora</label>
+                <input className="input" type="time" name="time" required />
+              </div>
+              <div className="field">
+                <label className="label">Pasajeros</label>
+                <select className="input" name="pax" defaultValue="1">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
+              </div>
+
+              <div className="actions">
+                <button className="btn btn-primary btn-lg" type="submit">
+                  Reservar ahora
+                </button>
+              </div>
+            </div>
+          </form>
+
+          {/* CTA secundaria (opcional) */}
+          <div className="hero-cta-row">
+            <Link href="/track/demo-trip" className="btn btn-ghost">
+              Ver tracking demo →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* --- Tus secciones actuales pueden ir debajo sin cambios --- */}
+      {/* BENEFICIOS */}
+      <section className="section">
+        <div className="wrap">
+          <div className="features">
+            <article className="feature-card">
+              <div className="badge">🔒 Seguridad</div>
+              <h3>Choferes verificados</h3>
+              <p>Selección rigurosa, experiencia premium y protocolos de seguridad.</p>
+            </article>
+
+            <article className="feature-card">
+              <div className="badge">📍 En vivo</div>
+              <h3>Seguimiento en tiempo real</h3>
+              <p>Comparte tu ruta y ETA con un clic. Transparencia total del viaje.</p>
+            </article>
+
+            <article className="feature-card">
+              <div className="badge">👨‍💻 24/7</div>
+              <h3>Soporte humano</h3>
+              <p>Estamos contigo antes, durante y después del viaje.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* …(resto de tu home: servicios, corporativo, testimonial, CTA final) */}
+    </>
+  );
+}
+
       {/* BENEFICIOS */}
       <section className="section">
         <div className="wrap">
