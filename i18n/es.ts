@@ -63,8 +63,7 @@ const es = {
     desc: "Confianza, estilo y soporte humano 24/7.",
     book: "Reservar ahora",
   },
-};
-export default es;
 footer: {
   contact: "Contacto",
 },
+export default es;
