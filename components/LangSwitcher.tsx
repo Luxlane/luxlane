@@ -1,30 +1,26 @@
+// components/LangSwitcher.tsx
 "use client";
 
-import { useTransition } from "react";
-
 export default function LangSwitcher({ current }: { current: "es" | "en" }) {
-  const [isPending, startTransition] = useTransition();
-
-  const switchLang = (code: "es" | "en") => {
-    if (isPending || code === current) return;
-    startTransition(() => {
-      window.location.href = `/lang/${code}`;
-    });
+  const setLang = (code: "es" | "en") => {
+    // Escribimos la cookie directamente y recargamos
+    document.cookie = `lang=${code}; path=/; max-age=${60 * 60 * 24 * 365}`;
+    window.location.reload();
   };
 
   return (
     <div style={{ display: "flex", gap: 10 }}>
       <button
-        onClick={() => switchLang("es")}
-        disabled={isPending || current === "es"}
+        onClick={() => setLang("es")}
+        disabled={current === "es"}
         aria-pressed={current === "es"}
         className="btn btn-ghost"
       >
         🇪🇸 Español
       </button>
       <button
-        onClick={() => switchLang("en")}
-        disabled={isPending || current === "en"}
+        onClick={() => setLang("en")}
+        disabled={current === "en"}
         aria-pressed={current === "en"}
         className="btn btn-ghost"
       >
