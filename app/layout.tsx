@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { cookies } from "next/headers";
-import { getDict } from "@/i18n";
+import { getDict } from "../i18n";
 import LangSwitcher from "@/components/LangSwitcher";
 
 export const metadata = {
