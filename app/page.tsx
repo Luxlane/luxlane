@@ -4,27 +4,26 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      {/* HERO con imagen full y overlay */}
       <section className="hero-full">
-        <img
-          className="hero-media"
-          src="/images/hero.jpg"
-          alt="Flota ejecutiva en ciudad"
-        />
-        <div className="hero-overlay" />
-        <div className="wrap hero-content">
-          <span className="kicker">Transporte premium con tracking</span>
-          <h1 className="hero-title">Viaja seguro, a tiempo y con estilo.</h1>
-          <p className="hero-sub">
-            Servicio ejecutivo — choferes verificados, seguimiento en vivo y soporte 24/7.
-          </p>
-          <div className="hero-actions">
-            <Link href="/book" className="btn btn-primary">Reservar ahora</Link>
-            <Link href="/track/demo-trip" className="btn btn-ghost">Ver tracking demo →</Link>
-          </div>
-        </div>
-      </section>
-
+  <img
+    className="hero-media"
+    src="/images/hero.jpg"
+    alt="Flota ejecutiva en ciudad"
+  />
+  <div className="hero-overlay" />
+  <div className="wrap hero-content">
+    <span className="kicker">Transporte premium con tracking</span>
+    <h1 className="hero-title">Viaja seguro, a tiempo y con estilo.</h1>
+    <p className="hero-sub">
+      Servicio ejecutivo — choferes verificados, seguimiento en vivo y soporte 24/7.
+    </p>
+    <div className="hero-actions">
+      <Link href="/book" className="btn btn-primary">Reservar ahora</Link>
+      <Link href="/track/demo-trip" className="btn btn-ghost">Ver tracking demo →</Link>
+    </div>
+  </div>
+</section>
+      
       {/* BENEFICIOS */}
       <section className="section">
         <div className="wrap">
