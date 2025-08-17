@@ -126,47 +126,125 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SERVICIOS DESTACADOS */}
-      <section className="section">
-        <div className="wrap">
-          <h2 className="section-title">Servicios para cada ocasión</h2>
+      {/* OUR SERVICES / NUESTROS SERVICIOS */}
+<section className="section">
+  <div className="wrap">
+    <h2 className="section-title">Nuestros Servicios <span style={{opacity:.6}}> / Our Services</span></h2>
 
-          <div className="services">
-            <article className="service-card">
-              <img src="/images/service-airport.jpg" alt="Traslados aeropuerto" />
-              <div className="service-content">
-                <h3>Airport Transfers</h3>
-                <p>Llega puntual y con estilo. Monitoreo de vuelos incluido.</p>
-              </div>
-            </article>
-
-            <article className="service-card">
-              <img src="/images/service-business.jpg" alt="Viajes ejecutivos" />
-              <div className="service-content">
-                <h3>Business Trips & Meetings</h3>
-                <p>Soluciones para ejecutivos y empresas. Facturación centralizada.</p>
-              </div>
-            </article>
-
-            <article className="service-card">
-              <img src="/images/service-city.jpg" alt="City to City" />
-              <div className="service-content">
-                <h3>City‑to‑City Travel</h3>
-                <p>Traslados interurbanos con confort premium.</p>
-              </div>
-            </article>
-
-            <article className="service-card">
-              <img src="/images/service-partners.jpg" alt="Clientes y socios" />
-              <div className="service-content">
-                <h3>Client & Partner Travel</h3>
-                <p>Impresiona a tus socios con un servicio excepcional.</p>
-              </div>
-            </article>
+    <div className="services">
+      {/* City to City */}
+      <article className="service-card">
+        <img
+          src="/images/service-city.jpg"
+          alt="City to City — Viajes entre ciudades"
+        />
+        <div className="service-content">
+          <h3>City‑to‑City Travel</h3>
+          <p className="muted">
+            ES: Traslados puerta a puerta entre ciudades, sin esperas ni conexiones. <br/>
+            EN: Door‑to‑door rides between cities with no waiting times or connections.
+          </p>
+          <div style={{marginTop:12, display:"flex", gap:10}}>
+            <a href="/book" className="btn btn-primary">Reservar / Book</a>
+            <a href="#c2c" className="btn btn-ghost">Ver comparativa</a>
           </div>
         </div>
-      </section>
+      </article>
 
+      {/* Airport Transfers */}
+      <article className="service-card">
+        <img
+          src="/images/service-airport.jpg"
+          alt="Traslados al Aeropuerto — Airport Transfers"
+        />
+        <div className="service-content">
+          <h3>Airport Transfers</h3>
+          <p className="muted">
+            ES: Recogida puntual; tracking de vuelos incluido para adaptarnos a retrasos. <br/>
+            EN: Punctual pick‑ups; flight tracking included to adapt to delays.
+          </p>
+          <div style={{marginTop:12, display:"flex", gap:10}}>
+            <a href="/book" className="btn btn-primary">Reservar / Book</a>
+            <a href="/#faq" className="btn btn-ghost">Más info</a>
+          </div>
+        </div>
+      </article>
+
+      {/* Business Travel */}
+      <article className="service-card">
+        <img
+          src="/images/service-business.jpg"
+          alt="Viajes Ejecutivos — Business Travel"
+        />
+        <div className="service-content">
+          <h3>Business Travel</h3>
+          <p className="muted">
+            ES: Traslados ejecutivos con discreción; reservas para directivos y equipos. <br/>
+            EN: Executive transfers with discretion; bookings for executives and teams.
+          </p>
+          <div style={{marginTop:12, display:"flex", gap:10}}>
+            <a href="/dashboard" className="btn btn-ghost">Hablar con ventas / Sales</a>
+          </div>
+        </div>
+      </article>
+
+      {/* Hourly Chauffeur */}
+      <article className="service-card">
+        <img
+          src="/images/service-partners.jpg"
+          alt="Servicio por Horas — Hourly Chauffeur"
+        />
+        <div className="service-content">
+          <h3>Hourly Chauffeur Service</h3>
+          <p className="muted">
+            ES: Reserva por horas con total flexibilidad de rutas y paradas. <br/>
+            EN: Book by the hour with full flexibility of routes and stops.
+          </p>
+          <div style={{marginTop:12, display:"flex", gap:10}}>
+            <a href="/book" className="btn btn-primary">Reservar / Book</a>
+          </div>
+        </div>
+      </article>
+
+      {/* Event & Group Transport */}
+      <article className="service-card">
+        <img
+          src="/images/service-events.jpg"
+          alt="Eventos y Grupos — Event & Group Transport"
+        />
+        <div className="service-content">
+          <h3>Event & Group Transport</h3>
+          <p className="muted">
+            ES: Coordinación para bodas, congresos y eventos corporativos. <br/>
+            EN: Coordinated service for weddings, conferences and corporate events.
+          </p>
+          <div style={{marginTop:12, display:"flex", gap:10}}>
+            <a href="/book" className="btn btn-primary">Cotizar / Get a quote</a>
+          </div>
+        </div>
+      </article>
+
+      {/* Premium Experience */}
+      <article className="service-card">
+        <img
+          src="/images/service-premium.jpg"
+          alt="Experiencia Premium — Premium Experience"
+        />
+        <div className="service-content">
+          <h3>Premium Experience</h3>
+          <p className="muted">
+            ES: Agua de cortesía, Wi‑Fi en la mayoría de vehículos y atención personalizada. <br/>
+            EN: Complimentary water, Wi‑Fi in most vehicles and personalized attention.
+          </p>
+          <div style={{marginTop:12, display:"flex", gap:10}}>
+            <a href="/book" className="btn btn-primary">Reservar / Book</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+      
       {/* CITY‑TO‑CITY / COMPARATIVA */}
       <section className="section c2c">
         <div className="wrap">
