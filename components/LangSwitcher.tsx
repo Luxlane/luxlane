@@ -1,39 +1,32 @@
 "use client";
+
 import { useTransition } from "react";
-import { useRouter } from "next/navigation";
 
-export default function LangSwitcher({ current }: { current: "es" | "en" }) {
-  const router = useRouter();
-  const [pending, start] = useTransition();
+export default function LangSwitcher() {
+  const [isPending, startTransition] = useTransition();
 
-  function setLang(lang: "es" | "en") {
-    start(async () => {
-      await fetch("/api/lang", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ lang }),
-      });
-      router.refresh(); // recarga el layout/página con el nuevo idioma
+  const switchLang = async (lang: "es" | "en") => {
+    startTransition(async () => {
+      await fetch(`/lang/${lang}`);
+      window.location.reload();
     });
-  }
+  };
 
   return (
-    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+    <div style={{ display: "flex", gap: "10px" }}>
       <button
-        className="btn btn-ghost"
-        onClick={() => setLang("es")}
-        disabled={pending || current === "es"}
-        aria-pressed={current === "es"}
+        onClick={() => switchLang("es")}
+        disabled={isPending}
+        style={{ padding: "5px 10px", cursor: "pointer" }}
       >
-        ES
+        🇪🇸 Español
       </button>
       <button
-        className="btn btn-ghost"
-        onClick={() => setLang("en")}
-        disabled={pending || current === "en"}
-        aria-pressed={current === "en"}
+        onClick={() => switchLang("en")}
+        disabled={isPending}
+        style={{ padding: "5px 10px", cursor: "pointer" }}
       >
-        EN
+        🇬🇧 English
       </button>
     </div>
   );
