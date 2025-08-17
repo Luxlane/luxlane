@@ -2,29 +2,33 @@
 
 import { useTransition } from "react";
 
-export default function LangSwitcher() {
+export default function LangSwitcher({ current }: { current: "es" | "en" }) {
   const [isPending, startTransition] = useTransition();
 
-  const switchLang = async (lang: "es" | "en") => {
-    startTransition(async () => {
-      await fetch(`/lang/${lang}`);
-      window.location.reload();
+  const switchLang = (code: "es" | "en") => {
+    if (isPending || code === current) return;
+    // Usamos navegación directa para que el server route /lang/[code] ponga la cookie
+    // y nos redirija al referer (o "/")
+    startTransition(() => {
+      window.location.href = `/lang/${code}`;
     });
   };
 
   return (
-    <div style={{ display: "flex", gap: "10px" }}>
+    <div style={{ display: "flex", gap: 10 }}>
       <button
         onClick={() => switchLang("es")}
-        disabled={isPending}
-        style={{ padding: "5px 10px", cursor: "pointer" }}
+        disabled={isPending || current === "es"}
+        aria-pressed={current === "es"}
+        className="btn btn-ghost"
       >
         🇪🇸 Español
       </button>
       <button
         onClick={() => switchLang("en")}
-        disabled={isPending}
-        style={{ padding: "5px 10px", cursor: "pointer" }}
+        disabled={isPending || current === "en"}
+        aria-pressed={current === "en"}
+        className="btn btn-ghost"
       >
         🇬🇧 English
       </button>
