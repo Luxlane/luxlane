@@ -204,3 +204,48 @@ html,body{
   .service-card{grid-column:span 6}
   .cta-inner{flex-direction:column;align-items:flex-start}
 }
+/* ===== City-to-City / Comparativa ===== */
+.c2c .muted{ color:var(--muted); margin: 8px 0 0; max-width: 70ch; }
+
+.compare{
+  display:grid; gap:16px; margin-top:18px;
+  grid-template-columns: repeat(12, minmax(0,1fr));
+}
+.compare-card{
+  grid-column: span 4;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  display:flex; flex-direction: column; gap: 12px;
+}
+.compare-card.compare-brand{
+  border-color: rgba(94,225,160,.45);
+  box-shadow: 0 10px 30px rgba(94,225,160,.08);
+}
+.compare-top{
+  display:flex; align-items:center; gap:10px; justify-content: space-between; flex-wrap: wrap;
+}
+.compare-emoji{ font-size: 22px; line-height: 1; }
+.compare-card h3{ margin: 0; font-size: 18px; }
+.badge.time{
+  border:1px solid var(--line);
+  background:#0e1219; color:var(--muted);
+  border-radius: 999px; padding: 6px 10px; font-size: 12px; font-weight: 600;
+}
+.badge.time.brand{ color:#0b0d12; background: linear-gradient(135deg, var(--brand), var(--brand-2)); border: none; }
+
+.compare-list{
+  list-style:none; padding:0; margin:0; display:grid; gap:8px; color:var(--muted);
+}
+.compare-cta{ display:flex; gap:12px; margin-top: 6px; flex-wrap: wrap; }
+
+/* Responsive */
+@media (max-width: 1024px){
+  .compare-card{ grid-column: span 6; }
+}
+@media (max-width: 640px){
+  .compare{ grid-template-columns: repeat(6, minmax(0,1fr)); }
+  .compare-card{ grid-column: span 6; }
+}
