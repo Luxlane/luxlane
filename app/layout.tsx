@@ -38,6 +38,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </div>
 
             <nav className="nav">
+              <Link href="/services">{(cookies().get("lang")?.value || "es") === "es" ? "Servicios" : "Services"}</Link>
               <Link href="/book">{t.nav.book}</Link>
               <Link href="/track/demo-trip">{t.nav.track}</Link>
               <Link href="/dashboard">{t.nav.dashboard}</Link>
