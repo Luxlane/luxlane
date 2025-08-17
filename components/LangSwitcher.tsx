@@ -7,8 +7,6 @@ export default function LangSwitcher({ current }: { current: "es" | "en" }) {
 
   const switchLang = (code: "es" | "en") => {
     if (isPending || code === current) return;
-    // Usamos navegación directa para que el server route /lang/[code] ponga la cookie
-    // y nos redirija al referer (o "/")
     startTransition(() => {
       window.location.href = `/lang/${code}`;
     });
