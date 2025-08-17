@@ -1,3 +1,4 @@
+// app/layout.tsx
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
@@ -6,8 +7,8 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { cookies } from "next/headers";
-import { getDict } from "../i18n"; // ajusta si tu carpeta está en otro lado
-import LangSwitcher from "../components/LangSwitcher"; // ajusta si tu archivo está en otra carpeta
+import { getDict } from "../i18n";              // OK si tu /i18n está en la raíz del repo
+import LangSwitcher from "../components/LangSwitcher"; // OK si tu componente está en /components
 
 export const metadata = {
   title: "LuxLine Transport",
@@ -15,8 +16,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  const cookieStore = cookies();
-  const lang = (cookieStore.get("lang")?.value || "es") as "es" | "en";
+  const lang = (cookies().get("lang")?.value || "es") as "es" | "en";
   const t = getDict(lang);
 
   return (
@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </div>
 
             <nav className="nav">
-              <Link href="/services">{(cookies().get("lang")?.value || "es") === "es" ? "Servicios" : "Services"}</Link>
+              <Link href="/services">{t.nav.services}</Link>
               <Link href="/book">{t.nav.book}</Link>
               <Link href="/track/demo-trip">{t.nav.track}</Link>
               <Link href="/dashboard">{t.nav.dashboard}</Link>
@@ -53,7 +53,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <div className="wrap footer-inner">
             <small>© {new Date().getFullYear()} LuxLine Transport</small>
             <a className="footer-link" href="mailto:contacto@luxline.com">
-              Contacto
+              {t.footer.contact}
             </a>
           </div>
         </footer>
