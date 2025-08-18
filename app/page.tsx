@@ -94,30 +94,36 @@ export default async function Home() {
       </section>
       {/* === /HERO === */}
 
-      {/* BENEFICIOS */}
-      <section className="section">
-        <div className="wrap">
-          <h2 className="section-title">{t.benefits.title}</h2>
-          <div className="features">
-            <article className="feature-card">
-              <div className="badge">🔒</div>
-              <h3>{t.benefits.security.title}</h3>
-              <p>{t.benefits.security.desc}</p>
-            </article>
-            <article className="feature-card">
-              <div className="badge">📍</div>
-              <h3>{t.benefits.live.title}</h3>
-              <p>{t.benefits.live.desc}</p>
-            </article>
-            <article className="feature-card">
-              <div className="badge">👨‍💻</div>
-              <h3>{t.benefits.support.title}</h3>
-              <p>{t.benefits.support.desc}</p>
-            </article>
-          </div>
-        </div>
-      </section>
+      {/* BENEFICIOS (nuevo layout) */}
+<section className="section" id="benefits">
+  <div className="wrap">
+    <h2 className="section-title">{t.benefits.title}</h2>
 
+    <div className="benefits">
+      {/* Card 1 */}
+      <article className="b-card">
+        <span className="b-pill">🔒 {lang === "en" ? "Security" : "Seguridad"}</span>
+        <h3>{t.benefits.security.title}</h3>
+        <p>{t.benefits.security.desc}</p>
+      </article>
+
+      {/* Card 2 */}
+      <article className="b-card">
+        <span className="b-pill">📍 {lang === "en" ? "Live" : "En vivo"}</span>
+        <h3>{t.benefits.live.title}</h3>
+        <p>{t.benefits.live.desc}</p>
+      </article>
+
+      {/* Card 3 */}
+      <article className="b-card">
+        <span className="b-pill">👨‍💻 24/7</span>
+        <h3>{t.benefits.support.title}</h3>
+        <p>{t.benefits.support.desc}</p>
+      </article>
+    </div>
+  </div>
+</section>
+      
       {/* OUR SERVICES / NUESTROS SERVICIOS */}
       <section className="section">
         <div className="wrap">
