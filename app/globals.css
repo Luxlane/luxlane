@@ -814,7 +814,8 @@ img{ max-width: 100%; height: auto; }
 /* Inputs integrados en la tarjeta (sin borde interno) */
 .booking--stacked .field .input{
   width: 100%;
-  height: 48px;
+  height: 40px;                /* más bajo */
+  font-size: 14px;             /* letra más compacta */
   border: none;
   outline: none;
   background: transparent;
@@ -835,9 +836,9 @@ img{ max-width: 100%; height: auto; }
 
 .booking--stacked .actions .btn{
   width: 100%;
-  height: 56px;
+  height: 48px;
   border-radius: 14px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 800;
 }
 
