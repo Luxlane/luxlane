@@ -1011,3 +1011,86 @@ img{ max-width: 100%; height: auto; }
   }
   .booking--stacked{ max-width: 100%; }
 }
+/* ===== LUXLINE — OVERRIDES COMPACTOS (pegar al final) ===== */
+
+/* Hero listo para superponer */
+.hero-full { position: relative; }
+.hero-content { position: relative; z-index: 5; }
+
+/* Tarjeta flotante: posición y tamaño */
+.booking-floater{
+  position: absolute;
+  top: 16%;                       /* súbelo/bájalo aquí (12%–22%) */
+  right: max(24px, calc(50% - 520px)); /* pegado al lado derecho del contenedor */
+  z-index: 20;
+}
+
+/* Card compacta estilo Blacklane */
+.booking--stacked{
+  max-width: 520px;               /* más angosta = premium */
+  padding: 16px 16px 18px;
+  border-radius: 16px;
+  background: rgba(17,19,24,.92);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 50px rgba(0,0,0,.35);
+  backdrop-filter: blur(6px) saturate(120%);
+}
+
+/* Tabs compactos */
+.booking--stacked .booking-tabs{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:8px; margin:0 0 10px;
+}
+
+/* Campos en una columna con respiro */
+.booking--stacked .booking-grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+/* Field tipo “tarjetita” */
+.booking--stacked .field{
+  background:#151821;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:8px 10px;
+}
+
+/* Etiqueta e input compactos */
+.booking--stacked .field .label{
+  margin:0 0 4px; font-size:12px; font-weight:600; color:var(--muted);
+}
+.booking--stacked .field .input{
+  height:38px; font-size:14px; padding:6px 8px;
+  border:none; outline:none; background:transparent; color:var(--text);
+}
+
+/* Botón: ancho completo y altura contenida */
+.booking--stacked .actions .btn{
+  width:100%; height:46px; border-radius:12px; font-size:15px; font-weight:800;
+}
+
+/* Responsive: en tablet baja un poco; en móvil se apila debajo */
+@media (max-width: 1100px){
+  .booking-floater{ top: 20%; right: 24px; }
+}
+@media (max-width: 820px){
+  .booking-floater{ position: static; margin-top: 14px; }
+  .booking--stacked{ max-width: 100%; }
+}
+
+/* Inputs globales (por si algún estilo anterior los hacía grandes) */
+.booking .input,
+.booking select{
+  font-size:14px;
+  padding:8px 10px;
+  height:38px;
+  border-radius:10px;
+}
+.booking .label{ font-size:13px; margin-bottom:4px; }
+
+/* Hero un poco más alto para que la tarjeta “flote” bien */
+.hero-full{ min-height: 76vh; }
+.hero-media{ object-position: center 62%; }
