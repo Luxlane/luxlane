@@ -86,29 +86,35 @@ export default function Home() {
         {/* --- /FORM FLOTTANTE --- */}
       </section>
 
-      {/* BENEFICIOS */}
-      <section className="section" id="benefits">
-        <div className="wrap">
-          <h2 className="section-title">{t.benefits.title}</h2>
-          <div className="features">
-            <article className="feature-card">
-              <div className="badge">🔒</div>
-              <h3>{t.benefits.security.title}</h3>
-              <p>{t.benefits.security.desc}</p>
-            </article>
-            <article className="feature-card">
-              <div className="badge">📍</div>
-              <h3>{t.benefits.live.title}</h3>
-              <p>{t.benefits.live.desc}</p>
-            </article>
-            <article className="feature-card">
-              <div className="badge">👨‍💻</div>
-              <h3>{t.benefits.support.title}</h3>
-              <p>{t.benefits.support.desc}</p>
-            </article>
-          </div>
-        </div>
-      </section>
+      {/* BENEFICIOS (estilo tipo Blacklane) */}
+<section className="section" id="benefits">
+  <div className="wrap">
+    <h2 className="section-title">{t.benefits.title}</h2>
+
+    <div className="bl-benefits">
+      {/* 1 */}
+      <article className="bl-card">
+        <span className="bl-pill">🔒 {lang === "en" ? "Security" : "Seguridad"}</span>
+        <h3>{t.benefits.security.title}</h3>
+        <p>{t.benefits.security.desc}</p>
+      </article>
+
+      {/* 2 */}
+      <article className="bl-card">
+        <span className="bl-pill">📍 {lang === "en" ? "Live" : "En vivo"}</span>
+        <h3>{t.benefits.live.title}</h3>
+        <p>{t.benefits.live.desc}</p>
+      </article>
+
+      {/* 3 */}
+      <article className="bl-card">
+        <span className="bl-pill">👨‍💻 24/7</span>
+        <h3>{t.benefits.support.title}</h3>
+        <p>{t.benefits.support.desc}</p>
+      </article>
+    </div>
+  </div>
+</section>
 
       {/* NUESTROS SERVICIOS */}
       <section className="section">
