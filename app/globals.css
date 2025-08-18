@@ -176,3 +176,36 @@ a{ color:inherit; text-decoration:none }
   .services h1{ font-size:26px; }
   .service-card img{ height:180px; }
 }
+/* ===== FIX: tamaños de imágenes & hero responsivo ===== */
+
+/* Hero más controlado (alto mínimo y máximo) */
+.hero-full{
+  /* antes: min-height: 86vh; */
+  min-height: clamp(60vh, 78vh, 820px);
+}
+@media (max-width: 640px){
+  .hero-full{ min-height: 58vh; }
+}
+/* centra un poco más abajo la imagen */
+.hero-media{ object-position: center 62%; }
+
+/* Cards de servicios: alto responsivo controlado */
+.service-card img{
+  /* antes: height: 220px; */
+  height: clamp(180px, 24vw, 280px);
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Imagen de corporativo: alto responsivo */
+.corporate-media img{
+  /* antes: height: 360px; */
+  height: clamp(220px, 34vw, 360px);
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Por si algún reset cambió algo, reforzamos el comportamiento base */
+img{ max-width: 100%; height: auto; }
