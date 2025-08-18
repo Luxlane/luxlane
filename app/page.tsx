@@ -12,99 +12,21 @@ export default async function Home() {
 
   return (
     <>
-      {/* === HERO (REEMPLAZAR TODO ESTE BLOQUE) === */}
-<section className="hero-full">
-  <img className="hero-media" src="/images/hero.jpg" alt="Fleet" />
-  <div className="hero-overlay" />
+      {/* === HERO === */}
+      <section className="hero-full">
+        <img className="hero-media" src="/images/hero.jpg" alt="Fleet" />
+        <div className="hero-overlay" />
 
-  <div className="wrap hero-content">
-    <div className="hero-top">
-      <span className="kicker">{t.hero.kicker}</span>
-      <h1 className="hero-title">{t.hero.title}</h1>
-      <p className="hero-sub">{t.hero.sub}</p>
-    </div>
+        <div className="wrap hero-content">
+          <div className="hero-top">
+            <span className="kicker">{t.hero.kicker}</span>
+            <h1 className="hero-title">{t.hero.title}</h1>
+            <p className="hero-sub">{t.hero.sub}</p>
+          </div>
 
-    {/* Booking Inline */}
-    <form className="booking" action="/book" method="GET">
-      {/* Tabs servicio */}
-      <div className="booking-tabs" role="tablist" aria-label="Service type">
-        <label className="tab">
-          <input type="radio" name="service" value="oneway" defaultChecked />
-          <span>{t.bookingTabs.oneway}</span>
-        </label>
-        <label className="tab">
-          <input type="radio" name="service" value="hourly" />
-          <span>{t.bookingTabs.hourly}</span>
-        </label>
-        <label className="tab">
-          <input type="radio" name="service" value="airport" />
-          <span>{t.bookingTabs.airport}</span>
-        </label>
-        <label className="tab">
-          <input type="radio" name="service" value="city2city" />
-          <span>{t.bookingTabs.city2city}</span>
-        </label>
-      </div>
-
-      {/* Campos */}
-      <div className="booking-grid">
-        <div className="field">
-          <label className="label">{t.bookingFields.from}</label>
-          <input
-            className="input"
-            name="from"
-            placeholder="Address / pickup"
-            required
-          />
-        </div>
-
-        <div className="field">
-          <label className="label">{t.bookingFields.to}</label>
-          <input
-            className="input"
-            name="to"
-            placeholder="Destination"
-            required
-          />
-        </div>
-
-        <div className="field">
-          <label className="label">{t.bookingFields.date}</label>
-          <input className="input" type="date" name="date" required />
-        </div>
-
-        <div className="field">
-          <label className="label">{t.bookingFields.time}</label>
-          <input className="input" type="time" name="time" required />
-        </div>
-
-        <div className="field">
-          <label className="label">{t.bookingFields.pax}</label>
-          <select className="input" name="pax" defaultValue="1">
-            <option value="1">1</option><option value="2">2</option>
-            <option value="3">3</option><option value="4">4</option>
-            <option value="5">5</option><option value="6">6</option>
-          </select>
-        </div>
-
-        <div className="actions">
-          <button className="btn btn-primary btn-lg" type="submit">
-            {t.bookingFields.submit}
-          </button>
-        </div>
-      </div>
-    </form>
-
-    <div className="hero-cta-row">
-      <Link href="/track/demo-trip" className="btn btn-ghost">
-        {t.hero.ctaSecondary}
-      </Link>
-    </div>
-  </div>
-</section>
-{/* === /HERO === */}
-          {/* Booking Inline (lecturas desde el diccionario) */}
+          {/* Booking Inline */}
           <form className="booking" action="/book" method="GET">
+            {/* Tabs servicio */}
             <div className="booking-tabs" role="tablist" aria-label="Service type">
               <label className="tab">
                 <input type="radio" name="service" value="oneway" defaultChecked />
@@ -124,23 +46,28 @@ export default async function Home() {
               </label>
             </div>
 
+            {/* Campos */}
             <div className="booking-grid">
               <div className="field">
                 <label className="label">{t.bookingFields.from}</label>
                 <input className="input" name="from" placeholder="Address / pickup" required />
               </div>
+
               <div className="field">
                 <label className="label">{t.bookingFields.to}</label>
                 <input className="input" name="to" placeholder="Destination" required />
               </div>
+
               <div className="field">
                 <label className="label">{t.bookingFields.date}</label>
                 <input className="input" type="date" name="date" required />
               </div>
+
               <div className="field">
                 <label className="label">{t.bookingFields.time}</label>
                 <input className="input" type="time" name="time" required />
               </div>
+
               <div className="field">
                 <label className="label">{t.bookingFields.pax}</label>
                 <select className="input" name="pax" defaultValue="1">
@@ -165,6 +92,7 @@ export default async function Home() {
           </div>
         </div>
       </section>
+      {/* === /HERO === */}
 
       {/* BENEFICIOS */}
       <section className="section">
