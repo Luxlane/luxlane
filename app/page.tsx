@@ -6,13 +6,13 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import { getDict } from "../i18n";
 
-export default function Home() {
+export default async function Home() {
   const lang = (cookies().get("lang")?.value || "es") as "es" | "en";
   const t = getDict(lang);
 
   return (
     <>
-      {/* HERO */}
+      {/* HERO con formulario inline */}
       <section className="hero-full">
         <img className="hero-media" src="/images/hero.jpg" alt="Fleet" />
         <div className="hero-overlay" />
@@ -24,7 +24,7 @@ export default function Home() {
             <p className="hero-sub">{t.hero.sub}</p>
           </div>
 
-          {/* Booking Inline */}
+          {/* Booking Inline (lecturas desde el diccionario) */}
           <form className="booking" action="/book" method="GET">
             <div className="booking-tabs" role="tablist" aria-label="Service type">
               <label className="tab">
@@ -79,7 +79,7 @@ export default function Home() {
             </div>
           </form>
 
-          <div className="hero-cta-row">
+          <div className="hero-cta-row" style={{ marginTop: 10 }}>
             <Link href="/track/demo-trip" className="btn btn-ghost">
               {t.hero.ctaSecondary}
             </Link>
@@ -111,7 +111,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* OUR SERVICES */}
+      {/* OUR SERVICES / NUESTROS SERVICIOS */}
       <section className="section">
         <div className="wrap">
           <h2 className="section-title">{t.services.title}</h2>
