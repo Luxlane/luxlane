@@ -5,9 +5,9 @@
   --card: #141923;       /* tarjetas */
   --line: #1f2530;       /* bordes sutiles */
   --text: #eef2f6;       /* texto principal */
-  --muted: #a6adbb;      /* texto secundario */
-  --brand: #5ee1a0;      /* acento mint */
-  --brand-2:#3ec58b;     /* gradiente/acento 2 */
+  --muted: #a6adbb;      /* texto secundario */  
+  --brand: #d4af37;   /* Dorado clásico */
+  --brand-2:#f5d97c; /* Champagne suave para gradientes */
   --danger:#ff6b6b;
   --radius: 16px;
   --shadow: 0 12px 40px rgba(0,0,0,.45);
