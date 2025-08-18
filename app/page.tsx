@@ -25,7 +25,7 @@ export default async function Home() {
           </div>
 
           {/* Booking Inline */}
-          <form className="booking" action="/book" method="GET">
+          <form className="booking booking--stacked" action="/book" method="GET">
             {/* Tabs servicio */}
             <div className="booking-tabs" role="tablist" aria-label="Service type">
               <label className="tab">
