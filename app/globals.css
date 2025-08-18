@@ -325,3 +325,81 @@ img{ max-width: 100%; height: auto; }
   .hero-full{ min-height:62vh; }
   .hero-content{ padding:64px 16px 28px; }
 }
+/* ===== Beneficios — estilo premium ===== */
+
+/* 3 columnas ya las tenemos; afinamos cada tarjeta */
+.feature-card{
+  position: relative;
+  background: linear-gradient(180deg, rgba(20,23,30,.35), rgba(16,19,26,.25));
+  border: 1px solid rgba(255,255,255,.05);
+  border-radius: 18px;
+  padding: 22px 22px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.25);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  min-height: 140px;
+}
+
+/* “glow” y micro‑animación */
+.feature-card:hover{
+  transform: translateY(-3px);
+  border-color: rgba(94,225,160,.25);               /* usa tu --brand */
+  box-shadow: 0 16px 38px rgba(94,225,160,.10), 0 12px 30px rgba(0,0,0,.28);
+}
+
+/* icono circular (reemplaza el cuadradito actual) */
+.feature-card .badge{
+  flex: 0 0 52px;
+  width: 52px; height: 52px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.06);
+  background:
+    radial-gradient(110% 110% at 30% 30%, rgba(255,255,255,.08), rgba(0,0,0,.0)),
+    linear-gradient(145deg, #0e1218, #0a0d13);
+  display: grid; place-items: center;
+  font-size: 22px; color: #fff;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+}
+
+/* títulos y texto */
+.feature-card h3{
+  margin: 2px 0 6px;
+  font-size: 20px;                /* un poquito más grande */
+  line-height: 1.15;
+  letter-spacing: .2px;
+}
+.feature-card p{
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.55;
+  max-width: 36ch;                /* ancho óptimo de lectura */
+}
+
+/* separadores verticales finos entre tarjetas en desktop */
+.features .feature-card:not(:nth-child(3n)){
+  /* nada aquí; usamos el ::after para el divisor */
+}
+.features .feature-card:not(:nth-child(3n))::after{
+  content: "";
+  position: absolute;
+  top: 18px; bottom: 18px; right: -11px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255,255,255,.06) 20%,
+    rgba(255,255,255,.06) 80%,
+    transparent 100%
+  );
+}
+
+/* responsive: sin divisores y con más aire en móvil */
+@media (max-width:1024px){
+  .features .feature-card::after{ display:none; }
+}
+@media (max-width:640px){
+  .feature-card{ padding:18px; min-height: unset; }
+  .feature-card .badge{ width:46px; height:46px; font-size:20px; }
+  .feature-card h3{ font-size:18px; }
+  .feature-card p{ font-size:14.5px; }
+}
