@@ -426,3 +426,64 @@ img{ max-width: 100%; height: auto; }
   .feature-card p{ font-size:14.5px; }
   .feature-card::before{ display:none; } /* más limpio en móvil */
 }
+/* ===== Beneficios – Variante FLAT (sin tarjetas) ===== */
+.features.flat{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 26px;
+}
+
+.features.flat .feature-card{
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0 0 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  align-items: start;
+  gap: 18px;
+}
+
+.features.flat .feature-card:hover{
+  transform: translateY(0);
+  border-color: rgba(255,255,255,.14);
+}
+
+.features.flat .feature-card .badge{
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #0e1218, #0a0d13);
+  border: 1px solid rgba(255,255,255,.06);
+  box-shadow: 0 10px 22px rgba(0,0,0,.22);
+  display:grid; place-items:center;
+  font-size: 22px;
+}
+
+.features.flat .feature-card h3{
+  margin: 2px 0 6px 0;
+  font-size: 20px;
+  letter-spacing: .2px;
+}
+
+.features.flat .feature-card p{
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.55;
+  max-width: 46ch;
+}
+
+/* responsive */
+@media (max-width: 1024px){
+  .features.flat{ grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 680px){
+  .features.flat{ grid-template-columns: 1fr; }
+  .features.flat .feature-card{
+    grid-template-columns: 50px 1fr;
+  }
+  .features.flat .feature-card .badge{ width:50px; height:50px; font-size:20px; }
+  .features.flat .feature-card h3{ font-size:18px; }
+  .features.flat .feature-card p{ font-size:14.5px; }
+}
