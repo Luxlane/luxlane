@@ -625,3 +625,55 @@ img{ max-width: 100%; height: auto; }
   .feature-card .badge{ width:56px; height:56px; }
   .feature-card h3{ font-size: clamp(18px, 5vw, 22px); }
 }
+/* ===== Benefits (cards con pill) ===== */
+.benefits{
+  display:grid;
+  gap:18px;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  margin-top:12px;
+}
+.b-card{
+  grid-column:span 4;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:22px 24px 24px;
+}
+
+.b-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 12px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:#0f141a;          /* respeta tu dark theme */
+  color:var(--muted);
+  font-size:12px;
+  font-weight:700;
+  user-select:none;
+}
+
+.b-card h3{
+  margin:12px 0 8px;
+  font-size:20px;              /* tamaño sobrio, evita desbordes */
+  line-height:1.2;
+}
+
+.b-card p{
+  margin:0;
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.6;
+  max-width: 52ch;             /* evita líneas larguísimas */
+}
+
+/* Responsive */
+@media (max-width:1024px){
+  .b-card{grid-column:span 6;}
+}
+@media (max-width:640px){
+  .benefits{grid-template-columns:repeat(6,minmax(0,1fr));}
+  .b-card{grid-column:span 6;}
+}
