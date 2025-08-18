@@ -1,9 +1,7 @@
-// components/LangSwitcher.tsx
 "use client";
 
 export default function LangSwitcher({ current }: { current: "es" | "en" }) {
   const setLang = (code: "es" | "en") => {
-    // Escribimos la cookie directamente y recargamos
     document.cookie = `lang=${code}; path=/; max-age=${60 * 60 * 24 * 365}`;
     window.location.reload();
   };
