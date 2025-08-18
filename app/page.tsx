@@ -6,25 +6,32 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import { getDict } from "../i18n";
 
-export default async function Home() {
+export default function Home() {
   const lang = (cookies().get("lang")?.value || "es") as "es" | "en";
   const t = getDict(lang);
 
   return (
     <>
-      {/* === HERO === */}
+      {/* === HERO con formulario flotante === */}
       <section className="hero-full">
         <img className="hero-media" src="/images/hero.jpg" alt="Fleet" />
         <div className="hero-overlay" />
 
-        <div className="wrap hero-content">
+        <div className="wrap hero-content" style={{ paddingBottom: 0 }}>
           <div className="hero-top">
             <span className="kicker">{t.hero.kicker}</span>
             <h1 className="hero-title">{t.hero.title}</h1>
             <p className="hero-sub">{t.hero.sub}</p>
+            <div className="hero-cta-row" style={{ marginTop: 10 }}>
+              <Link href="/track/demo-trip" className="btn btn-ghost">
+                {t.hero.ctaSecondary}
+              </Link>
+            </div>
           </div>
+        </div>
 
-          {/* Booking Inline */}
+        {/* --- CAJA FLOTE --- */}
+        <div className="booking-floater">
           <form className="booking booking--stacked" action="/book" method="GET">
             {/* Tabs servicio */}
             <div className="booking-tabs" role="tablist" aria-label="Service type">
@@ -46,28 +53,24 @@ export default async function Home() {
               </label>
             </div>
 
-            {/* Campos */}
+            {/* Campos (stacked) */}
             <div className="booking-grid">
               <div className="field">
                 <label className="label">{t.bookingFields.from}</label>
                 <input className="input" name="from" placeholder="Address / pickup" required />
               </div>
-
               <div className="field">
                 <label className="label">{t.bookingFields.to}</label>
                 <input className="input" name="to" placeholder="Destination" required />
               </div>
-
               <div className="field">
                 <label className="label">{t.bookingFields.date}</label>
                 <input className="input" type="date" name="date" required />
               </div>
-
               <div className="field">
                 <label className="label">{t.bookingFields.time}</label>
                 <input className="input" type="time" name="time" required />
               </div>
-
               <div className="field">
                 <label className="label">{t.bookingFields.pax}</label>
                 <select className="input" name="pax" defaultValue="1">
@@ -78,52 +81,44 @@ export default async function Home() {
               </div>
 
               <div className="actions">
-                <button className="btn btn-primary btn-lg" type="submit">
+                <button className="btn btn-primary" type="submit">
                   {t.bookingFields.submit}
                 </button>
               </div>
             </div>
           </form>
-
-          <div className="hero-cta-row" style={{ marginTop: 10 }}>
-            <Link href="/track/demo-trip" className="btn btn-ghost">
-              {t.hero.ctaSecondary}
-            </Link>
-          </div>
         </div>
+        {/* --- /CAJA FLOTE --- */}
       </section>
       {/* === /HERO === */}
 
-      {/* BENEFICIOS (nuevo layout) */}
-<section className="section" id="benefits">
-  <div className="wrap">
-    <h2 className="section-title">{t.benefits.title}</h2>
+      {/* BENEFICIOS (compacto pro) */}
+      <section className="section" id="benefits">
+        <div className="wrap">
+          <h2 className="section-title">{t.benefits.title}</h2>
 
-    <div className="benefits">
-      {/* Card 1 */}
-      <article className="b-card">
-        <span className="b-pill">🔒 {lang === "en" ? "Security" : "Seguridad"}</span>
-        <h3>{t.benefits.security.title}</h3>
-        <p>{t.benefits.security.desc}</p>
-      </article>
+          <div className="benefits">
+            <article className="b-card">
+              <span className="b-pill">🔒 {lang === "en" ? "Security" : "Seguridad"}</span>
+              <h3>{t.benefits.security.title}</h3>
+              <p>{t.benefits.security.desc}</p>
+            </article>
 
-      {/* Card 2 */}
-      <article className="b-card">
-        <span className="b-pill">📍 {lang === "en" ? "Live" : "En vivo"}</span>
-        <h3>{t.benefits.live.title}</h3>
-        <p>{t.benefits.live.desc}</p>
-      </article>
+            <article className="b-card">
+              <span className="b-pill">📍 {lang === "en" ? "Live" : "En vivo"}</span>
+              <h3>{t.benefits.live.title}</h3>
+              <p>{t.benefits.live.desc}</p>
+            </article>
 
-      {/* Card 3 */}
-      <article className="b-card">
-        <span className="b-pill">👨‍💻 24/7</span>
-        <h3>{t.benefits.support.title}</h3>
-        <p>{t.benefits.support.desc}</p>
-      </article>
-    </div>
-  </div>
-</section>
-      
+            <article className="b-card">
+              <span className="b-pill">👨‍💻 24/7</span>
+              <h3>{t.benefits.support.title}</h3>
+              <p>{t.benefits.support.desc}</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       {/* OUR SERVICES / NUESTROS SERVICIOS */}
       <section className="section">
         <div className="wrap">
