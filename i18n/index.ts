@@ -1,6 +1,9 @@
 import es from "./es";
 import en from "./en";
 
-export function getDict(lang: "es" | "en") {
-  return lang === "en" ? en : es;
+export type Lang = "es" | "en";
+const dict = { es, en } as const;
+
+export function getDict(lang: Lang) {
+  return dict[lang] ?? dict.es;
 }
