@@ -14,7 +14,7 @@ export const metadata = {
   description: "Premium rides with live tracking.",
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
   const lang = (cookies().get("lang")?.value || "es") as "es" | "en";
   const t = getDict(lang);
 
