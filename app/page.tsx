@@ -22,18 +22,13 @@ export default function Home() {
             <span className="kicker">{t.hero.kicker}</span>
             <h1 className="hero-title">{t.hero.title}</h1>
             <p className="hero-sub">{t.hero.sub}</p>
-            <div className="hero-cta-row" style={{ marginTop: 10 }}>
-              <Link href="/track/demo-trip" className="btn btn-ghost">
-                {t.hero.ctaSecondary}
-              </Link>
-            </div>
           </div>
         </div>
 
-        {/* --- CAJA FLOTE --- */}
+        {/* --- FORM FLOTTANTE (ÚNICO) --- */}
         <div className="booking-floater">
           <form className="booking booking--stacked" action="/book" method="GET">
-            {/* Tabs servicio */}
+            {/* Tabs */}
             <div className="booking-tabs" role="tablist" aria-label="Service type">
               <label className="tab">
                 <input type="radio" name="service" value="oneway" defaultChecked />
@@ -53,7 +48,7 @@ export default function Home() {
               </label>
             </div>
 
-            {/* Campos (stacked) */}
+            {/* Campos */}
             <div className="booking-grid">
               <div className="field">
                 <label className="label">{t.bookingFields.from}</label>
@@ -88,30 +83,26 @@ export default function Home() {
             </div>
           </form>
         </div>
-        {/* --- /CAJA FLOTE --- */}
+        {/* --- /FORM FLOTTANTE --- */}
       </section>
-      {/* === /HERO === */}
 
-      {/* BENEFICIOS (compacto pro) */}
+      {/* BENEFICIOS */}
       <section className="section" id="benefits">
         <div className="wrap">
           <h2 className="section-title">{t.benefits.title}</h2>
-
-          <div className="benefits">
-            <article className="b-card">
-              <span className="b-pill">🔒 {lang === "en" ? "Security" : "Seguridad"}</span>
+          <div className="features">
+            <article className="feature-card">
+              <div className="badge">🔒</div>
               <h3>{t.benefits.security.title}</h3>
               <p>{t.benefits.security.desc}</p>
             </article>
-
-            <article className="b-card">
-              <span className="b-pill">📍 {lang === "en" ? "Live" : "En vivo"}</span>
+            <article className="feature-card">
+              <div className="badge">📍</div>
               <h3>{t.benefits.live.title}</h3>
               <p>{t.benefits.live.desc}</p>
             </article>
-
-            <article className="b-card">
-              <span className="b-pill">👨‍💻 24/7</span>
+            <article className="feature-card">
+              <div className="badge">👨‍💻</div>
               <h3>{t.benefits.support.title}</h3>
               <p>{t.benefits.support.desc}</p>
             </article>
@@ -119,11 +110,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* OUR SERVICES / NUESTROS SERVICIOS */}
+      {/* NUESTROS SERVICIOS */}
       <section className="section">
         <div className="wrap">
           <h2 className="section-title">{t.services.title}</h2>
-
           <div className="services">
             <article className="service-card">
               <img src="/images/service-city.jpg" alt="City to City" />
