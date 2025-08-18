@@ -246,3 +246,82 @@ img{ max-width: 100%; height: auto; }
 .label{ display:block; font-size:13px; color:var(--muted); margin-bottom:6px; }
 .input{ width:100%; padding:12px 12px; border-radius:12px; border:1px solid var(--line);
   background:#0f141b; color:var(--text); }
+/* =========================
+   LUXLINE – FIX PACK (layout compacto & imágenes)
+   ========================= */
+
+/* Contenedor y separación general */
+.wrap{ max-width:1100px; }
+.section{ padding:48px 0; }
+.section-title{ margin:0 0 20px; }
+
+/* HERO: altura y respiración */
+.hero-full{ min-height:74vh; }
+.hero-content{ padding:80px 20px 36px; }
+.booking{ margin-top:16px; }
+
+/* BENEFICIOS (3 columnas en desktop) */
+.features{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:20px;
+}
+.feature-card{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  padding:20px;
+}
+.feature-card .badge{
+  width:36px; height:36px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:18px;
+  flex:0 0 36px;
+}
+.feature-card h3{ margin:4px 0 6px; }
+.feature-card p{ margin:0; }
+
+/* SERVICIOS (2 columnas en desktop) */
+.services{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:22px;
+}
+
+/* Cada card bien contenida */
+.service-card{
+  overflow:hidden;
+  border-radius: var(--radius);
+  border:1px solid var(--line);
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+/* La IMAGEN ya no “explota”: 16:9 uniforme */
+.service-card > img{
+  display:block;
+  width:100%;
+  aspect-ratio:16/9;      /* Fuerza proporción */
+  object-fit:cover;       /* Recorta sobrante sin deformar */
+}
+
+/* Texto y botones de la card */
+.service-content{ padding:18px 20px; }
+.service-content h3{ margin:0 0 6px; }
+.service-content p.muted{ margin:0; }
+
+/* CTA final y footer un poco más compactos */
+.cta-inner{ gap:14px; }
+.footer-inner{ min-height:64px; }
+
+/* ====== Responsive ====== */
+@media (max-width:1024px){
+  .features{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .services{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media (max-width:640px){
+  .features{ grid-template-columns:repeat(1,minmax(0,1fr)); }
+  .services{ grid-template-columns:repeat(1,minmax(0,1fr)); }
+  .hero-full{ min-height:62vh; }
+  .hero-content{ padding:64px 16px 28px; }
+}
