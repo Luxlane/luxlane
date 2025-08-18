@@ -1,4 +1,3 @@
-// app/layout.tsx
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
@@ -7,8 +6,8 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { cookies } from "next/headers";
-import { getDict } from "../i18n";              // OK si tu /i18n está en la raíz del repo
-import LangSwitcher from "../components/LangSwitcher"; // OK si tu componente está en /components
+import { getDict } from "../i18n";
+import LangSwitcher from "../components/LangSwitcher";
 
 export const metadata = {
   title: "LuxLine Transport",
