@@ -1172,3 +1172,75 @@ img{ max-width: 100%; height: auto; }
   .feature-card h3{ font-size: 18px !important; }
   .feature-card p{ font-size: 14.5px !important; }
 }
+/* ===== BENEFICIOS – estilo tipo captura (override final) ===== */
+.benefits{
+  display:grid !important;
+  grid-template-columns: repeat(3, minmax(0,1fr)) !important;
+  gap: 28px !important;
+  align-items: stretch !important;
+  margin-top: 22px !important;
+}
+
+.b-card{
+  background: var(--card) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow) !important;
+
+  padding: 24px 26px 26px !important;   /* respiración como la captura */
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+}
+
+/* Pastilla (pill) arriba */
+.b-pill{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap: 8px !important;
+  padding: 8px 12px !important;
+  border-radius: 999px !important;
+
+  background: #10141c !important;       /* oscuro suave */
+  border: 1px solid var(--line) !important;
+  color: var(--muted) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+}
+
+/* Título y texto */
+.b-card h3{
+  margin: 2px 0 6px !important;
+  font-size: 26px !important;           /* fuerza tamaño como tu ref */
+  line-height: 1.2 !important;
+  font-weight: 800 !important;
+  letter-spacing: .1px !important;
+}
+
+.b-card p{
+  margin: 0 !important;
+  color: var(--muted) !important;
+  font-size: 17px !important;
+  line-height: 1.6 !important;
+  max-width: 58ch !important;           /* ancho cómodo */
+}
+
+/* Hover sutil, sin mover */
+.b-card:hover{
+  border-color: var(--line) !important;
+  box-shadow: var(--shadow) !important;
+  transform: none !important;
+}
+
+/* Responsivo */
+@media (max-width: 1024px){
+  .benefits{ grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+}
+@media (max-width: 680px){
+  .benefits{ grid-template-columns: 1fr !important; gap: 18px !important; }
+  .b-card{ padding: 18px !important; }
+  .b-card h3{ font-size: 22px !important; }
+  .b-card p{ font-size: 15.5px !important; }
+  .b-pill{ font-size: 12px !important; padding: 7px 10px !important; }
+}
